@@ -1,4 +1,3 @@
-Las librerías que utilizamos en el código son:
-- pandas
-- matplotlib
-- folium
+pandas
+matplotlib
+folium
