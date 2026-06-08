@@ -1,5 +1,5 @@
 # Trabajo_Aplicado_Final
-Participantes: Victoria Fagalde, Camila D'Albora, Martina Sergi, Delfina Puiggari
+Participantes: Victoria Fagalde, Camila D'Albora, Martina Sergi, Delfina Puiggari y Ramiro Gago
 
 Trabajo Aplicado — Análisis de Airbnb en CABA
 El propósito de este proyecto es diseñar un programa que procese y analice datos de alojamientos de Airbnb en la Ciudad Autónoma de Buenos Aires, con el objetivo de encontrar patrones de precios, zonas más demandadas y factores que influyen en la valoración de los alojamientos. El programa recibe un archivo CSV descargado de Inside Airbnb con datos reales de listings (precio, barrio, tipo de alojamiento, reviews, disponibilidad, entre otros), procesa y limpia esa información, y finalmente presenta al usuario tablas resumen y gráficos comparativos según sus preferencias personales.
