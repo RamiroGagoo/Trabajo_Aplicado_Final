@@ -1,2 +1,2 @@
 #main
-ruta = 
+ruta = "datos/airbnb.csv"
