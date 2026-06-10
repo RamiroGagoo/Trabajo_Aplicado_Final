@@ -4,7 +4,7 @@ from src.carga_datos_pandas import carga_datos
 from src.procesamiento_datos import limpiar_precio, filtrar_datos, filtrado_por_barrio
 from src.comparaciones import buscar_compatibles
 from src.carga_de_preferencias_del_usuario import carga_preferencias_usuario
-from graficos.Grafico_general import crear_mapa
+from graficos.Grafico_segun_preferencias_del_usuario import crear_mapa
 
 ruta = "datos/airbnb2.csv"
 
@@ -32,6 +32,6 @@ if df is not None:
         print("No se encontraron alojamientos compatibles.")
     else:
         mapa = crear_mapa(df_filtrado)
-        mapa.save("mapa_alojamientos.html")
+        mapa.show_in_browser()
 
         print("Mapa generado correctamente.")
