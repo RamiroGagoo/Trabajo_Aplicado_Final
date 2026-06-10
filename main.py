@@ -1,16 +1,38 @@
+# main
+import pandas as pd
 from src.carga_datos_pandas import carga_datos
+from src.procesamiento_datos import limpiar_precio, filtrar_datos, filtrado_por_barrio
+from src.comparaciones import buscar_compatibles
+from src.carga_de_preferencias_del_usuario import carga_preferencias_usuario
 from graficos.Grafico_general import crear_mapa
 
-ruta = "datos/airbnb.csv"
+ruta = "datos/airbnb2.csv"
 
 df = carga_datos(ruta)
 
 if df is not None:
 
-    df_mapa = df.sample(100)
+    df = limpiar_precio(df)
 
-    mapa = crear_mapa(df_mapa)
-    mapa.save("mapa_alojamientos.html")
+    df = filtrar_datos(df)
 
-    print("Mapa generado correctamente.")
-    
+    df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce") 
+    df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
+
+    preferencias = carga_preferencias_usuario(df)
+
+    preferencias["precio"] = float(preferencias["precio"])
+    preferencias["minimum_nights"] = int(preferencias["minimum_nights"])
+
+    df_barrio = filtrado_por_barrio(preferencias, df)
+
+    df_filtrado = buscar_compatibles(df_barrio, preferencias)
+
+    # 🔹 resultado final
+    if df_filtrado is None or len(df_filtrado) == 0:
+        print("No se encontraron alojamientos compatibles.")
+    else:
+        mapa = crear_mapa(df_filtrado)
+        mapa.save("mapa_alojamientos.html")
+
+        print("Mapa generado correctamente.")
