@@ -31,6 +31,10 @@ Para correr el programa, el usuario debe seguir los siguientes pasos:
 Clonar el repositorio o descargar los archivos del proyecto.
 Instalar las librerías necesarias ejecutando en la terminal:
 pip install -r requirements.txt
+Nota: Si el mapa no se visualiza correctamente, verificar que la librería folium esté instalada.
+En ese caso, ejecutar:
+pip install folium
+El programa generará un mapa interactivo con los alojamientos compatibles, el cual se abrirá automáticamente en el navegador del usuario.
 
 Descargar el dataset de Inside Airbnb( http://insideairbnb.com/get-the-data/ ) (seleccionar Buenos Aires) y guardarlo como datos/airbnb.csv.
 Desde la raíz del repositorio, ejecutar python main.py
@@ -41,7 +45,7 @@ Librerías utilizadas:
 Se utilizaron dos librerías externas en este proyecto: 
 pandas: Se usa para la carga, limpieza y procesamiento del archivo CSV. 
 matplotlib: Se usa para la generación de los gráficos y visualizaciones que se le presentan al usuario.
-
+folium: Se usa para la visualización geográfica de los alojamientos en un mapa interactivo.
 Dataset:
 Se utilizan datos públicos de Inside Airbnb, que publica periódicamente información de los listings disponibles en distintas ciudades del mundo. El archivo contiene datos como precio, barrio, tipo de alojamiento, cantidad de reviews y disponibilidad, entre otros.
 El archivo CSV no está incluido en este repositorio por su tamaño. Debe descargarse manualmente desde el sitio de Inside Airbnb.
