@@ -23,7 +23,6 @@ def carga_preferencias_usuario(df):
     barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
     precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en USD)?: ").strip()
     noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
-<<<<<<< Updated upstream
   
     print("[Menú Desplegable: Tipo de Alojamiento]")
     print(" 1. Casa o Departamento entero")
@@ -45,8 +44,6 @@ def carga_preferencias_usuario(df):
     else:
         tipo_alojamiento = "Entire home/apt"
         
-=======
-
     # 2. Extraer opciones únicas de room_type desde el DataFrame
     opciones = df["room_type"].dropna().unique().tolist()
 
@@ -65,7 +62,6 @@ def carga_preferencias_usuario(df):
             print(f" Opción inválida. Ingresá un número entre 1 y {len(opciones)}.")
 
     # 5. Diccionario final con las llaves exactas del CSV
->>>>>>> Stashed changes
     preferencias = {
         "neighbourhood": barrio,
         "price": precio_max,
