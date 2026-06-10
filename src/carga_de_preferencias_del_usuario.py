@@ -1,4 +1,3 @@
-
 def carga_preferencias_usuario(df):
     """
     Solicita al usuario sus preferencias de hospedaje en CABA por medio de la consola.
@@ -20,30 +19,11 @@ def carga_preferencias_usuario(df):
               - 'minimum_nights': Cantidad de noches (str, aún sin validar).
               - 'room_type': Tipo de habitación tal como figura en el CSV (str).
     """
+    # 1. Inputs manuales
     barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
     precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en USD)?: ").strip()
     noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
-  
-    print("[Menú Desplegable: Tipo de Alojamiento]")
-    print(" 1. Casa o Departamento entero")
-    print(" 2. Habitación privada")
-    print(" 3. Habitación compartida")
-    print(" 4. Habitación de hotel")
-    
-    opcion = input("Selecciona introduciendo el número (1, 2, 3 o 4): ").strip()
-    
-   
-    if opcion == "1":
-        tipo_alojamiento = "Entire home/apt"
-    elif opcion == "2":
-        tipo_alojamiento = "Private room"
-    elif opcion == "3":
-        tipo_alojamiento = "Shared room"
-    elif opcion == "4":
-        tipo_alojamiento = "Hotel room"
-    else:
-        tipo_alojamiento = "Entire home/apt"
-        
+
     # 2. Extraer opciones únicas de room_type desde el DataFrame
     opciones = df["room_type"].dropna().unique().tolist()
 
@@ -64,7 +44,7 @@ def carga_preferencias_usuario(df):
     # 5. Diccionario final con las llaves exactas del CSV
     preferencias = {
         "neighbourhood": barrio,
-        "price": precio_max,
+        "precio": precio_max,
         "minimum_nights": noches,
         "room_type": tipo_alojamiento
     }
