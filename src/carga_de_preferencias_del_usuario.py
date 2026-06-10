@@ -48,7 +48,7 @@ def carga_preferencias_usuario():
         
     preferencias = {
         "neighbourhood": barrio,
-        "precio": precio_max,
+        "price": precio_max,
         "minimum_nights": noches,
         "room_type": tipo_alojamiento
     }
