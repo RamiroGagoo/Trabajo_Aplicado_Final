@@ -46,4 +46,4 @@ def max_noches(df_barrio):
     """
     if df_barrio.empty:
         return None
-    return int(df_barrio["maximum_nights"].max())
+    return int(df_barrio["availability_365"].max())
