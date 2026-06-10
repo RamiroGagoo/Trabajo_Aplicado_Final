@@ -1,5 +1,5 @@
 # src/comparaciones.py
-
+import pandas as pd
 def tipo_de_hospedaje(hospedaje, preferencia_hospedaje):
     """
     Verifica si el tipo de hospedaje coincide con la preferencia del usuario.
@@ -63,11 +63,6 @@ def buscar_compatibles(df_barrio, preferencias):
         cumple_noches = cant_noches(hospedaje, preferencias["minimum_nights"])
 
         if cumple_tipo and cumple_precio and cumple_noches:
-            resultados.append({
-                "nombre"    : hospedaje["name"],
-                "precio"    : hospedaje["precio"],
-                "min_noches": hospedaje["minimum_nights"],
-                "max_noches": hospedaje["availability_365"]
-            })
+            resultados.append(hospedaje)
 
-    return resultados
+    return pd.DataFrame(resultados)
