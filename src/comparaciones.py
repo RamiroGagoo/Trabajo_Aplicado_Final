@@ -26,7 +26,7 @@ def precio(hospedaje, preferencia_precio):
     Devuelve:
         bool: True si el precio del hospedaje es menor o igual al máximo.
     """
-    return hospedaje["price"] <= preferencia_precio
+    return hospedaje["precio"] <= preferencia_precio
 
 
 def cant_noches(hospedaje, cant_noches_usuario):
@@ -51,7 +51,7 @@ def buscar_compatibles(df_barrio, preferencias):
     Parámetros:
         df_barrio (DataFrame): listings ya filtrados por barrio.
         preferencias (dict): diccionario con las preferencias del usuario.
-                             Claves esperadas: "room_type", "price", "minimum_nights".
+                             Claves esperadas: "room_type", "precio", "minimum_nights".
     Devuelve:
         resultados: lista de dicts, cada uno con los datos del hospedaje compatible.
     """
@@ -59,13 +59,13 @@ def buscar_compatibles(df_barrio, preferencias):
 
     for _, hospedaje in df_barrio.iterrows():
         cumple_tipo   = tipo_de_hospedaje(hospedaje, preferencias["room_type"])
-        cumple_precio = precio(hospedaje, preferencias["price"])
+        cumple_precio = precio(hospedaje, preferencias["precio"])
         cumple_noches = cant_noches(hospedaje, preferencias["minimum_nights"])
 
         if cumple_tipo and cumple_precio and cumple_noches:
             resultados.append({
                 "nombre"    : hospedaje["name"],
-                "precio"    : hospedaje["price"],
+                "precio"    : hospedaje["precio"],
                 "min_noches": hospedaje["minimum_nights"],
                 "max_noches": hospedaje["availability_365"]
             })
