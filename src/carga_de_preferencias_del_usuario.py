@@ -22,12 +22,10 @@ def carga_preferencias_usuario():
               - 'room_type': Tipo de habitación traducido al inglés (str).
 
     """
-    # 1. Inputs manuales
     barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
     precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en USD)?: ").strip()
     noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
   
-    # 2. Tu menú de opciones fijas en la consola
     print("[Menú Desplegable: Tipo de Alojamiento]")
     print(" 1. Casa o Departamento entero")
     print(" 2. Habitación privada")
@@ -36,8 +34,7 @@ def carga_preferencias_usuario():
     
     opcion = input("Selecciona introduciendo el número (1, 2, 3 o 4): ").strip()
     
-    # 3. TU TRADUCTOR DIRECTO A INGLÉS
-    # Mapeamos el número elegido al término exacto del CSV original
+   
     if opcion == "1":
         tipo_alojamiento = "Entire home/apt"
     elif opcion == "2":
@@ -47,11 +44,8 @@ def carga_preferencias_usuario():
     elif opcion == "4":
         tipo_alojamiento = "Hotel room"
     else:
-        # Tu red de seguridad por si ponen cualquier otra cosa
-        #manejo de error
         tipo_alojamiento = "Entire home/apt"
         
-    # 4. El diccionario final con las llaves exactas del CSV
     preferencias = {
         "neighbourhood": barrio,
         "precio": precio_max,
