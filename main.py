@@ -1,4 +1,3 @@
-#main
 from src.carga_datos_pandas import carga_datos
 from graficos.Grafico_general import crear_mapa
 
@@ -14,3 +13,4 @@ if df is not None:
     mapa.save("mapa_alojamientos.html")
 
     print("Mapa generado correctamente.")
+    

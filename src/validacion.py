@@ -1,4 +1,20 @@
 
+def validar_dataframe(df):
+    """
+    Chequea columnas, tipos y nulos.
+    Muestra un aviso al usuario en caso de errores en el CSV.
+    (Bloque 2 del diagrama de flujo)
+    
+    Parámetros
+    ---------
+    df: DataFrame
+    """
+    if df is None or df.empty:
+        print("Aviso: El DataFrame está vacío o es nulo.")
+        return False
+
+columnas_esperadas = ['neighbourhood', 'price', 'minimum_nights', 'room_type', 'availability_365']
+
 def validar_preferencias(preferencias, barrios_validos):
     """
     Valida que los datos ingresados en el diccionario de preferencias sean correctos.
