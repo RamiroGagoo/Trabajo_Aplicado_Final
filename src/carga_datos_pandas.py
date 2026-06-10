@@ -29,4 +29,3 @@ def carga_datos(ruta):
         return None
 
 
-
