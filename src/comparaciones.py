@@ -53,7 +53,7 @@ def buscar_compatibles(df_barrio, preferencias):
         preferencias (dict): diccionario con las preferencias del usuario.
                              Claves esperadas: "room_type", "price", "minimum_nights".
     Devuelve:
-        list: lista de dicts, cada uno con los datos del hospedaje compatible.
+        resultados: lista de dicts, cada uno con los datos del hospedaje compatible.
     """
     resultados = []
 
