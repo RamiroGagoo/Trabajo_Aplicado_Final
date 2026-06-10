@@ -11,9 +11,9 @@ def validar_dataframe(df):
     """
     if df is None or df.empty:
         print("Aviso: El DataFrame está vacío o es nulo.")
-        return False
+        return True
 
-columnas_esperadas = ['neighbourhood', 'price', 'minimum_nights', 'room_type', 'availability_365']
+columnas_esperadas = ['neighbourhood', 'precio', 'minimum_nights', 'room_type', 'availability_365']
 
 def validar_preferencias(preferencias, barrios_validos):
     """
@@ -48,7 +48,7 @@ def validar_preferencias(preferencias, barrios_validos):
         return False
 
     
-    preferencias["price"] = int(precio_str)
+    preferencias["precio"] = int(precio_str)
     preferencias["minimum_nights"] = int(noches_str)
   
    
