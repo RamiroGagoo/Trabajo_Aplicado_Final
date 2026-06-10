@@ -41,7 +41,7 @@ def cant_noches(hospedaje, cant_noches_usuario):
     Devuelve:
         bool: True si cant_noches_usuario está entre el mínimo y máximo del hospedaje.
     """
-    return hospedaje["minimum_nights"] <= cant_noches_usuario <= hospedaje["maximum_nights"]
+    return hospedaje["minimum_nights"] <= cant_noches_usuario <= hospedaje["availiability_365"]
 
 def buscar_compatibles(df_barrio, preferencias):
     """
@@ -67,7 +67,7 @@ def buscar_compatibles(df_barrio, preferencias):
                 "nombre"    : hospedaje["name"],
                 "precio"    : hospedaje["price"],
                 "min_noches": hospedaje["minimum_nights"],
-                "max_noches": hospedaje["maximum_nights"]
+                "max_noches": hospedaje["availiability_365"]
             })
 
     return resultados
