@@ -9,7 +9,7 @@ def crear_mapa(df):
 
     mapa = folium.Map(location=[-34.60, -58.44], zoom_start=12)
 
-    for i, fila in df.iterrows():
+    for _, fila in df.iterrows():
         lat = fila["latitude"]
         lon = fila["longitude"]
 
