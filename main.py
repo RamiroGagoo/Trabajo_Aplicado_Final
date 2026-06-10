@@ -28,7 +28,6 @@ if df is not None:
 
     df_filtrado = buscar_compatibles(df_barrio, preferencias)
 
-    # 🔹 resultado final
     if df_filtrado is None or len(df_filtrado) == 0:
         print("No se encontraron alojamientos compatibles.")
     else:
