@@ -21,7 +21,7 @@ def carga_preferencias_usuario(df):
     """
     # 1. Inputs manuales
     barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
-    precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en USD)?: ").strip()
+    precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en pesos argentinos)?: ").strip()
     noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
 
     # 2. Extraer opciones únicas de room_type desde el DataFrame
