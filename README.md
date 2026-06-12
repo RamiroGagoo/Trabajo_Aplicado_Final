@@ -4,12 +4,14 @@ Participantes: Victoria Fagalde, Camila D'Albora, Martina Sergi, Delfina Puiggar
 Trabajo Aplicado — Análisis de Airbnb en CABA
 El propósito de este proyecto es diseñar un programa que procese y analice datos de alojamientos de Airbnb en la Ciudad Autónoma de Buenos Aires, con el objetivo de encontrar patrones de precios, zonas más demandadas y factores que influyen en la valoración de los alojamientos. El programa recibe un archivo CSV descargado de Inside Airbnb con datos reales de listings (precio, barrio, tipo de alojamiento, reviews, disponibilidad, entre otros), procesa y limpia esa información, y finalmente presenta al usuario tablas resumen y gráficos comparativos según sus preferencias personales.
 
-Errores y validaciones:
-Un primer error que identificamos fue la posibilidad de que el archivo CSV no se encuentre en la ruta indicada o que esté vacío. Para evitar ese error, implementamos bloques try/except que capturan el FileNotFoundError y el ValueError, informando al usuario con un mensaje claro y deteniendo la ejecución de forma controlada.
+Errores y validaciones
+Un primer error que identificamos fue la posibilidad de que el archivo CSV no se encuentre en la ruta indicada o que la carga falle por algún motivo. Para esto, en el main.py se usa un bloque try/except que captura un ValueError si carga_datos devuelve None, y un except Exception genérico para cualquier otro error inesperado durante la lectura del archivo.
 
-Un segundo error que identificamos fue la posibilidad de que el usuario ingrese preferencias inválidas, como un precio negativo, una cantidad de noches igual a cero, o un barrio que no existe en el dataset. Para esto implementamos validaciones con raise ValueError dentro de las funciones correspondientes, que interrumpen el flujo y le indican al usuario exactamente qué dato es incorrecto.
+Un segundo error que identificamos fue la posibilidad de que, durante la limpieza y el filtrado de datos, no queden filas en el DataFrame (por ejemplo, si todos los precios son inválidos). Para esto se usa un try/except similar: se lanza un ValueError si el DataFrame queda vacío después de limpiar_precio y filtrar_datos, y se captura un Exception para errores no previstos en el procesamiento.
+Un tercer error que identificamos fue la posibilidad de que el usuario ingrese preferencias inválidas (precio o noches no numéricos, barrio inexistente, etc.). La función validar_preferencias devuelve True o False según corresponda; en el main.py, si devuelve False, se lanza un ValueError indicando que las preferencias no son válidas.
 
-Un tercer caso que contemplamos es cuando ningún alojamiento cumple con todas las preferencias ingresadas por el usuario. En ese caso, el programa no falla sino que muestra un mensaje de sugerencia indicando qué parámetro podría modificarse (por ejemplo, aumentar el precio máximo o considerar barrios cercanos).
+Un cuarto caso que contemplamos es la posibilidad de que no haya alojamientos en el barrio elegido por el usuario. Si filtrado_por_barrio devuelve un DataFrame vacío, se lanza un ValueError con un mensaje indicando que no se encontraron alojamientos en ese barrio.
+Finalmente, un quinto caso es cuando ningún alojamiento cumple con todas las preferencias ingresadas (tipo, precio y noches). En ese caso el programa no falla, sino que muestra un mensaje de sugerencia indicando qué parámetro podría modificarse (por ejemplo, aumentar el presupuesto, considerar otra cantidad de noches o probar otro tipo de alojamiento).
 
 
 Estructura del proyecto:
