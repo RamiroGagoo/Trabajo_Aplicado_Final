@@ -5,7 +5,7 @@ import pandas as pd
 def crear_tabla_html(df, nombre_archivo="tabla_alojamientos.html"):
     """
     Genera una tabla HTML estilizada con los alojamientos disponibles 
-    y la abre en el navegador web por defecto.
+    y la abre en el navegador web.
     
     Parámetros:
         df (pd.DataFrame): DataFrame con los alojamientos filtrados.

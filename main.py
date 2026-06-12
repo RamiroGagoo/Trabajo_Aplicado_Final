@@ -5,6 +5,7 @@ from src.procesamiento_datos import limpiar_precio, filtrar_datos, filtrado_por_
 from src.comparaciones import buscar_compatibles
 from src.carga_de_preferencias_del_usuario import carga_preferencias_usuario
 from graficos.Grafico_segun_preferencias_del_usuario import crear_mapa
+from graficos.tabla_alojamientos import crear_tabla_html
 
 ruta = "datos/airbnb2.csv"
 
@@ -35,3 +36,5 @@ if df is not None:
         mapa.show_in_browser()
 
         print("Mapa generado correctamente.")
+
+        crear_tabla_html(df_filtrado)
