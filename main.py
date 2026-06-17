@@ -7,7 +7,7 @@ from src.carga_de_preferencias_del_usuario import carga_preferencias_usuario
 from docs.Grafico_segun_preferencias_del_usuario import crear_mapa
 from docs.tabla_alojamientos import crear_tabla_html
 
-ruta = "datos/airbnb2.csv"
+ruta = "data/airbnb2.csv"
 
 df = carga_datos(ruta)
 
