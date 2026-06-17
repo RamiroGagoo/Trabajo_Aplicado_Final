@@ -38,3 +38,5 @@ if df is not None:
         print("Mapa generado correctamente.")
 
         crear_tabla_html(df_filtrado)
+        
+        
