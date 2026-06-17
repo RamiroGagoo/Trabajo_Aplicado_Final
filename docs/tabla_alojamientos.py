@@ -58,7 +58,7 @@ def crear_tabla_html(df, nombre_archivo="tabla_alojamientos.html"):
     </html>
     """
 
-    ruta_completa = os.path.abspath(nombre_archivo)
+    ruta_completa = os.path.abspath(os.path.join("outputs", nombre_archivo))
     with open(ruta_completa, "w", encoding="utf-8") as f:
         f.write(html_final)
 
