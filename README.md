@@ -23,8 +23,12 @@ carga.py — Carga y validación del CSV.
 usuario.py — Entrada y validación de las preferencias del usuario.
 analisis.py — Métricas, comparaciones y filtros.
 graficos.py — Generación de gráficos y tablas.
-datos/ — Carpeta donde debe guardarse el archivo airbnb.csv descargado de Inside Airbnb.
-diseño/ — Carpeta que contiene el diagrama de flujo del programa.
+data/ — Carpeta donde debe guardarse el archivo airbnb.csv descargado de Inside Airbnb.
+docs/ — Carpeta que contiene el diagrama de flujo del programa
+Grafico_segun_preferencias_del_usuario.py - Creación de gráficos.
+tabla_alojamiento.py - Creación de tabla de alojamientos.
+outputs/ - Carpeta con los resultados del código. 
+Alcaración: a pesar de que sí pudimos guardar en esta carpeta los mapas que se generan (.html), no pudimos hacer lo mismo con los .html de las tablas.
 
 
 
