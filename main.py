@@ -33,6 +33,7 @@ if df is not None:
         print("No se encontraron alojamientos compatibles.")
     else:
         mapa = crear_mapa(df_filtrado)
+        mapa.save("outputs/mapa.html")
         mapa.show_in_browser()
 
         print("Mapa generado correctamente.")
