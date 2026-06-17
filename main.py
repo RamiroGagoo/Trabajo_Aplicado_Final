@@ -75,4 +75,4 @@ if df is not None and preferencias is not None and df_barrio is not None:
             print("Mapa generado correctamente.")
             crear_tabla_html(df_filtrado)
         except Exception as e:
-            print(f"No se pudo generar el mapa o la tabla. Revisá que la carpeta 'outputs' exista. Detalle: {e}")
+            print(f"No se pudo generar el mapa o la tabla.  Detalle: {e}")
