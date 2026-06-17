@@ -32,6 +32,18 @@ if df is not None:
     if df_filtrado is None or len(df_filtrado) == 0:
         print("No se encontraron alojamientos compatibles.")
     else:
+        barrio = preferencias.get("neighbourhood", "el barrio elegido")
+        cantidad = len(df_filtrado)
+        precio_prom = round(df_filtrado["precio"].mean(), 2)
+        precio_min = df_filtrado["precio"].min()
+        precio_max = df_filtrado["precio"].max()
+        noches_min = int(df_filtrado["minimum_nights"].min())
+
+        print(f"\n En {barrio} encontramos {cantidad} alojamiento(s) que se ajustan a "
+              f"tus preferencias. El precio promedio por noche es de ${precio_prom}, "
+              f"con un rango que va desde ${precio_min} hasta ${precio_max}. "
+              f"La estadía mínima requerida en esta zona es de {noches_min} noche(s).\n")
+
         mapa = crear_mapa(df_filtrado)
         mapa.save("outputs/mapa.html")
         mapa.show_in_browser()
