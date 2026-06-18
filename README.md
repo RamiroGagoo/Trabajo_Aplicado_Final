@@ -15,10 +15,10 @@ Finalmente, un quinto caso es cuando ningún alojamiento cumple con todas las pr
 Estructura del proyecto:
 Estructura del repositorio
 
-main.py — Punto de entrada del programa, orquesta todas las funciones.
-requirements.txt — Lista de librerías necesarias para ejecutarlo.
-README.md — Este archivo.
-declaracion_ia.md — Declaración de uso de IA.
+- main.py — Punto de entrada del programa, orquesta todas las funciones.
+- requirements.txt — Lista de librerías necesarias para ejecutarlo.
+- README.md — Este archivo.
+- declaracion_ia.md — Declaración de uso de IA.
 data/ — Carpeta donde debe guardarse el archivo airbnb2.csv.
 src/ — Carpeta con los módulos internos:
 - carga_datos_pandas.py — Carga del CSV.
