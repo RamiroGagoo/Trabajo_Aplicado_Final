@@ -29,9 +29,13 @@ Finalmente, un quinto caso es cuando ningún alojamiento cumple con todas las pr
 
 Division de tareas: 
 Victoria Fagalde — Infraestructura base: carga del CSV, validación del DataFrame, limpieza de la columna de precios y filtrado de columnas relevantes.
+
 Martina Sergi — Interacción con el usuario: entrada de preferencias, validación de esas preferencias y filtrado por barrio.
+
 Camila Dalbora — Lógica analítica: métricas del barrio (promedio de precio, mínimo y máximo de noches) y funciones de comparación para encontrar alojamientos compatibles.
+
 Ramiro Gago — Visualizaciones: mapa interactivo con Folium y tabla HTML de resultados.
+
 Delfina Puiggari — El main.py, manejo de excepciones, documentación y diagrama de flujo.
 
 Descripción de la fuente de datos:
@@ -57,18 +61,22 @@ Se utilizaron tres librerías externas en este proyecto. La primera es pandas, q
 
 Estructura del repositorio:
 --> data/ — Carpeta donde debe guardarse el archivo airbnb2.csv. src/ 
+
 - airbnb2.csv. src/
 
 --> docs/ — Carpeta con los módulos de visualización:
+
 - Grafico_general.py — Generación de gráficos generales de CABA.
 - Grafico_segun_preferencias_del_usuario.py — Mapa interactivo con Folium según las preferencias del usuario.
 - tabla_alojamientos.py — Generación de la tabla HTML de resultados.
   
 --> outputs/ — Carpeta donde se guardan los archivos generados:
+
 - mapa.html — Mapa interactivo generado por el programa.
 - tabla_alojamientos.html — Tabla de resultados generada por el programa.
 
 --> src/ — Carpeta con los módulos internos:
+
 - carga_datos_pandas.py — Carga del CSV.
 - carga_de_preferencias_del_usuario.py — Entrada de preferencias del usuario.
 - comparaciones.py — Funciones de comparación y búsqueda de compatibles.
@@ -77,11 +85,17 @@ Estructura del repositorio:
 - validacion.py — Validación del DataFrame y las preferencias.
 
 --> diseño/ — Carpeta que contiene los diagramas de flujo del programa.
+
 --> .DS_Store
+
 --> .gitattributes
+
 --> README.md
+
 --> main.py
+
 --> requierements.txt
+
 --> tabla_alojamientos.html
 
 Descripcion de funciones importantes:
