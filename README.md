@@ -56,29 +56,33 @@ Librerías utilizadas:
 Se utilizaron tres librerías externas en este proyecto. La primera es pandas, que se usa para la carga, limpieza y procesamiento del archivo CSV. La segunda es matplotlib, utilizada para la generación de gráficos generales. La tercera es Folium, utilizada para generar el mapa interactivo con la ubicación de los alojamientos compatibles. 
 
 Estructura del repositorio:
-data/ — Carpeta donde debe guardarse el archivo airbnb2.csv. src/ 
+--> data/ — Carpeta donde debe guardarse el archivo airbnb2.csv. src/ 
 - airbnb2.csv. src/
-docs/ — Carpeta con los módulos de visualización:
+
+--> docs/ — Carpeta con los módulos de visualización:
 - Grafico_general.py — Generación de gráficos generales de CABA.
 - Grafico_segun_preferencias_del_usuario.py — Mapa interactivo con Folium según las preferencias del usuario.
 - tabla_alojamientos.py — Generación de la tabla HTML de resultados.
-outputs/ — Carpeta donde se guardan los archivos generados:
+  
+--> outputs/ — Carpeta donde se guardan los archivos generados:
 - mapa.html — Mapa interactivo generado por el programa.
-- tabla_alojamientos.html — Tabla de resultados generada por el programa. 
-src/ — Carpeta con los módulos internos:
+- tabla_alojamientos.html — Tabla de resultados generada por el programa.
+
+--> src/ — Carpeta con los módulos internos:
 - carga_datos_pandas.py — Carga del CSV.
 - carga_de_preferencias_del_usuario.py — Entrada de preferencias del usuario.
 - comparaciones.py — Funciones de comparación y búsqueda de compatibles.
 - metricas.py — Cálculo de métricas del barrio.
 - procesamiento_datos.py — Limpieza y filtrado de datos.
-- validacion.py — Validación del DataFrame y las preferencias. 
-diseño/ — Carpeta que contiene los diagramas de flujo del programa.
-.DS_Store
-.gitattributes
-README.md
-main.py
-requierements.txt
-tabla_alojamientos.html
+- validacion.py — Validación del DataFrame y las preferencias.
+
+--> diseño/ — Carpeta que contiene los diagramas de flujo del programa.
+--> .DS_Store
+--> .gitattributes
+--> README.md
+--> main.py
+--> requierements.txt
+--> tabla_alojamientos.html
 
 Descripcion de funciones importantes:
 
