@@ -6,31 +6,52 @@ El propósito de este proyecto es diseñar un programa que procese y analice dat
 
 Errores y validaciones
 Un primer error que identificamos fue la posibilidad de que el archivo CSV no se encuentre en la ruta indicada o que la carga falle por algún motivo. Para esto, en el main.py se usa un bloque try/except que captura un ValueError si carga_datos devuelve None, y un except Exception genérico para cualquier otro error inesperado durante la lectura del archivo.
-
 Un segundo error que identificamos fue la posibilidad de que, durante la limpieza y el filtrado de datos, no queden filas en el DataFrame (por ejemplo, si todos los precios son inválidos). Para esto se usa un try/except similar: se lanza un ValueError si el DataFrame queda vacío después de limpiar_precio y filtrar_datos, y se captura un Exception para errores no previstos en el procesamiento.
-Un tercer error que identificamos fue la posibilidad de que el usuario ingrese preferencias inválidas (precio o noches no numéricos, barrio inexistente, etc.). La función validar_preferencias devuelve True o False según corresponda; en el main.py, si devuelve False, se lanza un ValueError indicando que las preferencias no son válidas.
-
-Un cuarto caso que contemplamos es la posibilidad de que no haya alojamientos en el barrio elegido por el usuario. Si filtrado_por_barrio devuelve un DataFrame vacío, se lanza un ValueError con un mensaje indicando que no se encontraron alojamientos en ese barrio.
+Un tercer error que identificamos fue la posibilidad de que el usuario ingrese preferencias inválidas, como un precio o una cantidad de noches que no sean numéricos. En el main.py, al intentar convertir esos valores con float() e int(), Python lanza automáticamente un ValueError que es capturado por el bloque try/except, mostrándole al usuario un mensaje claro indicando qué dato debe corregir.
+Un cuarto caso que contemplamos es la posibilidad de que no haya alojamientos en el barrio elegido por el usuario. Si filtrado_por_barrio devuelve un DataFrame vacío, se lanza un ValueError con un mensaje personalizado indicando que no se encontraron alojamientos en ese barrio.
 Finalmente, un quinto caso es cuando ningún alojamiento cumple con todas las preferencias ingresadas (tipo, precio y noches). En ese caso el programa no falla, sino que muestra un mensaje de sugerencia indicando qué parámetro podría modificarse (por ejemplo, aumentar el presupuesto, considerar otra cantidad de noches o probar otro tipo de alojamiento).
 
 
 Estructura del proyecto:
-El proyecto está organizado de la siguiente manera:
-main.py — Punto de entrada del programa.
+Estructura del repositorio
+
+main.py — Punto de entrada del programa, orquesta todas las funciones.
 requirements.txt — Lista de librerías necesarias para ejecutarlo.
+README.md — Este archivo.
+declaracion_ia.md — Declaración de uso de IA.
+data/ — Carpeta donde debe guardarse el archivo airbnb2.csv.
 src/ — Carpeta con los módulos internos:
-carga.py — Carga y validación del CSV.
-usuario.py — Entrada y validación de las preferencias del usuario.
-analisis.py — Métricas, comparaciones y filtros.
-graficos.py — Generación de gráficos y tablas.
-data/ — Carpeta donde debe guardarse el archivo airbnb.csv descargado de Inside Airbnb.
-docs/ — Carpeta que contiene el diagrama de flujo del programa
-Grafico_segun_preferencias_del_usuario.py - Creación de gráficos.
-tabla_alojamiento.py - Creación de tabla de alojamientos.
-outputs/ - Carpeta con los resultados del código. 
-Alcaración: a pesar de que sí pudimos guardar en esta carpeta los mapas que se generan (.html), no pudimos hacer lo mismo con los .html de las tablas.
+- carga_datos_pandas.py — Carga del CSV.
+- carga_de_preferencias_del_usuario.py — Entrada de preferencias del usuario.
+- comparaciones.py — Funciones de comparación y búsqueda de compatibles.
+- metricas.py — Cálculo de métricas del barrio.
+- procesamiento_datos.py — Limpieza y filtrado de datos.
+- validacion.py — Validación del DataFrame y las preferencias.
+docs/ — Carpeta con los módulos de visualización:
+- Grafico_segun_preferencias_del_usuario.py — Mapa interactivo con Folium.
+- tabla_alojamientos.py — Generación de la tabla HTML de resultados.
+outputs/ — Carpeta donde se guardan los archivos generados:
+- mapa.html — Mapa interactivo generado por el programa.
+- tabla_alojamientos.html — Tabla de resultados generada por el programa.
+diseño/ — Carpeta que contiene el diagrama de flujo del programa.
 
-
+Funciones principales:
+- carga_datos(ruta) — Lee el archivo CSV de Airbnb y devuelve un DataFrame. Verifica que el archivo exista antes de leerlo y captura cualquier error durante la lectura.
+- limpiar_precio(df) — Limpia la columna precio del DataFrame, eliminando símbolos como $ y comas, y la convierte a tipo numérico. Descarta las filas con precios inválidos.
+- filtrar_datos(dataframe) — Filtra el DataFrame dejando únicamente las columnas necesarias para el análisis: id, nombre, barrio, coordenadas, tipo de alojamiento, precio, noches mínimas, disponibilidad y reviews.
+- carga_preferencias_usuario(df) — Solicita al usuario sus preferencias por consola: barrio, presupuesto máximo por noche, cantidad de noches y tipo de alojamiento. El menú de tipos de alojamiento se genera dinámicamente a partir del CSV.
+- validar_dataframe(df) — Verifica que el DataFrame no esté vacío o sea nulo, mostrando un aviso en caso de error.
+- validar_preferencias(preferencias, barrios_validos) — Valida que el precio y la cantidad de noches sean números enteros positivos, y que el barrio ingresado exista en el dataset.
+- filtrado_por_barrio(preferencia_del_usuario, dataframe_filtrado) — Crea un nuevo DataFrame con únicamente los alojamientos pertenecientes al barrio elegido por el usuario.
+- tipo_de_hospedaje(hospedaje, preferencia_hospedaje) — Verifica si el tipo de alojamiento de un hospedaje coincide con la preferencia del usuario. Devuelve True o False.
+precio(hospedaje, preferencia_precio) — Verifica si el precio de un hospedaje está dentro del presupuesto máximo del usuario. Devuelve True o False.
+- cant_noches(hospedaje, cant_noches_usuario) — Verifica si la cantidad de noches del usuario está dentro del rango aceptado por el hospedaje. Devuelve True o False.
+- buscar_compatibles(df_barrio, preferencias) — Recorre todos los hospedajes del barrio y devuelve un DataFrame con los que cumplen las tres condiciones: tipo, precio y cantidad de noches.
+- promedio_precio(df_barrio) — Calcula el precio promedio de los hospedajes de un barrio, redondeado a 2 decimales.
+- min_noches(df_barrio) — Devuelve la menor cantidad mínima de noches requerida entre todos los hospedajes del barrio.
+- max_noches(df_barrio) — Devuelve la mayor cantidad máxima de noches permitida entre todos los hospedajes del barrio.
+- crear_mapa(df_filtrado) — Genera un mapa interactivo con Folium mostrando la ubicación de los alojamientos compatibles, usando sus coordenadas de latitud y longitud.
+- crear_tabla_html(df_filtrado) — Genera una tabla HTML con los alojamientos compatibles y la guarda en la carpeta outputs/.
 
 Guía de ejecución:
 Para correr el programa, el usuario debe seguir los siguientes pasos:
@@ -48,13 +69,17 @@ El programa pedirá al usuario que ingrese sus preferencias: barrio, precio máx
 Una vez ingresadas las preferencias, se mostrarán los resultados en forma de tabla y gráficos.
 
 Librerías utilizadas:
-Se utilizaron dos librerías externas en este proyecto: 
-pandas: Se usa para la carga, limpieza y procesamiento del archivo CSV. 
-matplotlib: Se usa para la generación de los gráficos y visualizaciones que se le presentan al usuario.
-folium: Se usa para la visualización geográfica de los alojamientos en un mapa interactivo.
+Se utilizaron tres librerías externas en este proyecto. La primera es pandas, que se usa para la carga, limpieza y procesamiento del archivo CSV. La segunda es matplotlib, utilizada para la generación de gráficos generales. La tercera es Folium, utilizada para generar el mapa interactivo con la ubicación de los alojamientos compatibles. 
 Dataset:
 Se utilizan datos públicos de Inside Airbnb, que publica periódicamente información de los listings disponibles en distintas ciudades del mundo. El archivo contiene datos como precio, barrio, tipo de alojamiento, cantidad de reviews y disponibilidad, entre otros.
 El archivo CSV no está incluido en este repositorio por su tamaño. Debe descargarse manualmente desde el sitio de Inside Airbnb.
+
+Division de tareas: 
+Victoria Fagalde — Infraestructura base: carga del CSV, validación del DataFrame, limpieza de la columna de precios y filtrado de columnas relevantes.
+Martina Sergi — Interacción con el usuario: entrada de preferencias, validación de esas preferencias y filtrado por barrio.
+Camila Dalbora — Lógica analítica: métricas del barrio (promedio de precio, mínimo y máximo de noches) y funciones de comparación para encontrar alojamientos compatibles.
+Ramiro Gago — Visualizaciones: mapa interactivo con Folium y tabla HTML de resultados.
+Delfina Puiggari — El main.py, manejo de excepciones, documentación y diagrama de flujo.
 
 Uso de IA
 - Durante el desarrollo de este proyecto se utilizaron herramientas de IA generativa como apoyo en distintas etapas del proceso. A continuación se detalla cómo fue utilizada por cada integrante:
