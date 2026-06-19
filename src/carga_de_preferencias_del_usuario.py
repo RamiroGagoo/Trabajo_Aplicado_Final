@@ -1,4 +1,4 @@
-from validacion import validar_preferencias
+from validacion.py import validar_preferencias
 
 
 def carga_preferencias_usuario(df):
