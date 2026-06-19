@@ -46,3 +46,4 @@ def carga_preferencias_usuario(df):
 
     print(" ¡Preferencias guardadas con éxito!")
     return preferencias
+
