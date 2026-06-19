@@ -1,3 +1,6 @@
+from validacion import validar_preferencias
+
+
 def carga_preferencias_usuario(df):
     """
     Solicita al usuario sus preferencias de hospedaje en CABA por medio de la consola.
@@ -9,45 +12,50 @@ def carga_preferencias_usuario(df):
     
     Parámetros:
         df (pd.DataFrame): DataFrame con los datos de Airbnb, debe contener
-                           la columna 'room_type'.
+                           las columnas 'room_type' y 'neighbourhood'.
     
     Retorna:
-        dict: Un diccionario con las preferencias capturadas, donde las llaves 
+        dict: Un diccionario con las preferencias capturadas y validadas, donde las llaves 
               corresponden a las columnas técnicas del archivo de datos:
               - 'neighbourhood': Nombre del barrio (str).
-              - 'precio': Presupuesto máximo (str, aún sin validar).
-              - 'minimum_nights': Cantidad de noches (str, aún sin validar).
+              - 'precio': Presupuesto máximo (int, ya validado).
+              - 'minimum_nights': Cantidad de noches (int, ya validado).
               - 'room_type': Tipo de habitación tal como figura en el CSV (str).
     """
-    # 1. Inputs manuales
-    barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
-    precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en pesos argentinos)?: ").strip()
-    noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
-
-    # 2. Extraer opciones únicas de room_type desde el DataFrame
+    # Extraer opciones del DataFrame una sola vez, antes del loop
     opciones = df["room_type"].dropna().unique().tolist()
+    barrios_validos = df["neighbourhood"].dropna().unique().tolist()
 
-    # 3. Mostrar menú dinámico
-    print("\n[Menú Desplegable: Tipo de Alojamiento]")
-    for i, opcion in enumerate(opciones, start=1):
-        print(f" {i}. {opcion}")
-
-    # 4. Validar selección dentro del rango disponible
     while True:
-        seleccion = input(f"Selecciona introduciendo un número (1-{len(opciones)}): ").strip()
-        if seleccion.isdigit() and 1 <= int(seleccion) <= len(opciones):
-            tipo_alojamiento = opciones[int(seleccion) - 1]
-            break
-        else:
-            print(f" Opción inválida. Ingresá un número entre 1 y {len(opciones)}.")
+        # 1. Inputs manuales
+        barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
+        precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en pesos argentinos)?: ").strip()
+        noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
 
-    # 5. Diccionario final con las llaves exactas del CSV
-    preferencias = {
-        "neighbourhood": barrio,
-        "precio": precio_max,
-        "minimum_nights": noches,
-        "room_type": tipo_alojamiento
-    }
+        # 2. Mostrar menú dinámico de room_type
+        print("\n[Menú Desplegable: Tipo de Alojamiento]")
+        for i, opcion in enumerate(opciones, start=1):
+            print(f" {i}. {opcion}")
 
-    print(" ¡Preferencias guardadas con éxito!")
-    return preferencias
+        # 3. Validar selección dentro del rango disponible
+        while True:
+            seleccion = input(f"Selecciona introduciendo un número (1-{len(opciones)}): ").strip()
+            if seleccion.isdigit() and 1 <= int(seleccion) <= len(opciones):
+                tipo_alojamiento = opciones[int(seleccion) - 1]
+                break
+            else:
+                print(f" Opción inválida. Ingresá un número entre 1 y {len(opciones)}.")
+
+        # 4. Armar diccionario y validar
+        preferencias = {
+            "neighbourhood": barrio,
+            "precio": precio_max,
+            "minimum_nights": noches,
+            "room_type": tipo_alojamiento
+        }
+
+        if validar_preferencias(preferencias, barrios_validos):
+            print(" ¡Preferencias guardadas con éxito!")
+            return preferencias
+
+        print("\n--- Por favor, volvé a ingresar tus preferencias. ---\n")

@@ -1,4 +1,3 @@
-
 def validar_dataframe(df):
     """
     Chequea columnas, tipos y nulos.
@@ -13,7 +12,9 @@ def validar_dataframe(df):
         print("Aviso: El DataFrame está vacío o es nulo.")
         return True
 
+
 columnas_esperadas = ['neighbourhood', 'precio', 'minimum_nights', 'room_type', 'availability_365']
+
 
 def validar_preferencias(preferencias, barrios_validos):
     """
@@ -29,9 +30,9 @@ def validar_preferencias(preferencias, barrios_validos):
         bool: True si todo es válido, False si encuentra algún error.
     """
 
-    precio_str = preferencias["price"]
+    precio_str = preferencias["precio"]
     if not precio_str.isdigit() or int(precio_str) <= 0:
-        print(" Error: El presupuesto máximo debe ser un número entero positivo (sin letras ni símbolos).")
+        print("Error: El presupuesto máximo debe ser un número entero positivo (sin letras ni símbolos).")
         return False
 
     noches_str = preferencias["minimum_nights"]
@@ -40,20 +41,17 @@ def validar_preferencias(preferencias, barrios_validos):
         return False
 
     barrio_usuario = preferencias["neighbourhood"].strip().lower()
-    
     barrios_csv_minuscula = [b.lower() for b in barrios_validos]
     
     if barrio_usuario not in barrios_csv_minuscula:
         print(f"Error: El barrio '{preferencias['neighbourhood']}' no existe en el registro de CABA.")
         return False
 
-    
     preferencias["precio"] = int(precio_str)
     preferencias["minimum_nights"] = int(noches_str)
-  
-   
+
     posicion = barrios_csv_minuscula.index(barrio_usuario)
     preferencias["neighbourhood"] = barrios_validos[posicion]
 
-    print("¡Todas las preferencias son válidas y preparadas para Pandas!")
-    return True 
+    return True
+
