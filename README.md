@@ -54,7 +54,7 @@ El programa generará un mapa interactivo con los alojamientos compatibles, el c
 Descargar el dataset de Inside Airbnb( http://insideairbnb.com/get-the-data/ ) (seleccionar Buenos Aires) y guardarlo como datos/airbnb.csv.
 Desde la raíz del repositorio, ejecutar python main.py
 El programa pedirá al usuario que ingrese sus preferencias: barrio, precio máximo, cantidad de noches y tipo de hospedaje.
-Una vez ingresadas las preferencias, se mostrarán los resultados en forma de tabla y gráficos.
+Una vez ingresadas las preferencias, se mostrarán los resultados en forma de tabla, texto y un gráfico de un mapa. Una aclaración importante es que si se encuentran resultados acordes a las preferencias, se abre inmediatamente el mapa en el navegador y el texto se despliega en consola. Para visualizar la tabla hay que cerrar el mapa y frenar el código manualmente. 
 
 Librerías utilizadas:
 Se utilizaron tres librerías externas en este proyecto. La primera es pandas, que se usa para la carga, limpieza y procesamiento del archivo CSV. La segunda es matplotlib, utilizada para la generación de gráficos generales. La tercera es Folium, utilizada para generar el mapa interactivo con la ubicación de los alojamientos compatibles. 
