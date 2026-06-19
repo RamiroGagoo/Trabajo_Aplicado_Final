@@ -22,16 +22,31 @@ def carga_preferencias_usuario(df):
               - 'minimum_nights': Cantidad de noches (int, ya validado).
               - 'room_type': Tipo de habitación tal como figura en el CSV (str).
     """
+<<<<<<< HEAD
     # Extraer opciones del DataFrame una sola vez, antes del loop
+=======
+    barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
+    precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en pesos argentinos)?: ").strip()
+    noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
+
+>>>>>>> fa03ff876b6f9acca8fc025244a9286be230f4b1
     opciones = df["room_type"].dropna().unique().tolist()
     barrios_validos = df["neighbourhood"].dropna().unique().tolist()
 
+<<<<<<< HEAD
+=======
+    print("\n[Menú Desplegable: Tipo de Alojamiento]")
+    for i, opcion in enumerate(opciones, start=1):
+        print(f" {i}. {opcion}")
+
+>>>>>>> fa03ff876b6f9acca8fc025244a9286be230f4b1
     while True:
         # 1. Inputs manuales
         barrio = input(" ¿En qué barrio de CABA te quieres hospedar?: ").strip()
         precio_max = input(" ¿Cuál es tu presupuesto máximo por noche (en pesos argentinos)?: ").strip()
         noches = input(" ¿Cuántas noches te vas a quedar?: ").strip()
 
+<<<<<<< HEAD
         # 2. Mostrar menú dinámico de room_type
         print("\n[Menú Desplegable: Tipo de Alojamiento]")
         for i, opcion in enumerate(opciones, start=1):
@@ -59,3 +74,15 @@ def carga_preferencias_usuario(df):
             return preferencias
 
         print("\n--- Por favor, volvé a ingresar tus preferencias. ---\n")
+=======
+    preferencias = {
+        "neighbourhood": barrio,
+        "precio": precio_max,
+        "minimum_nights": noches,
+        "room_type": tipo_alojamiento
+    }
+
+    print(" ¡Preferencias guardadas con éxito!")
+    return preferencias
+
+>>>>>>> fa03ff876b6f9acca8fc025244a9286be230f4b1

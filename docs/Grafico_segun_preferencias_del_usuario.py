@@ -18,3 +18,4 @@ def crear_mapa(df):
         ).add_to(mapa)
 
     return mapa
+
