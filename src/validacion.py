@@ -16,42 +16,50 @@ def validar_dataframe(df):
 columnas_esperadas = ['neighbourhood', 'precio', 'minimum_nights', 'room_type', 'availability_365']
 
 
-def validar_preferencias(preferencias, barrios_validos):
+def validar_precio(precio_str):
     """
-    Valida que los datos ingresados en el diccionario de preferencias sean correctos.
-    Si todo está bien, convierte los números de texto a tipo entero (int) para Pandas.
-    
+    Valida que el presupuesto sea un número entero positivo.
+
     Argumentos:
-        preferencias (dict): El diccionario que generó tu función de carga.
-        barrios_validos (list): Una lista con los nombres de barrios reales que tu compañero 
-                                extrae del CSV de Airbnb.
-                                
+        precio_str (str): El presupuesto ingresado por el usuario como texto.
+
     Retorna:
-        bool: True si todo es válido, False si encuentra algún error.
+        bool: True si es válido, False si no lo es.
     """
-
-    precio_str = preferencias["precio"]
     if not precio_str.isdigit() or int(precio_str) <= 0:
-        print("Error: El presupuesto máximo debe ser un número entero positivo (sin letras ni símbolos).")
+        print(" Dato inválido: el presupuesto debe ser un número entero positivo (sin letras ni símbolos).")
         return False
-
-    noches_str = preferencias["minimum_nights"]
-    if not noches_str.isdigit() or int(noches_str) <= 0:
-        print("Error: La cantidad de noches debe ser un número entero positivo.")
-        return False
-
-    barrio_usuario = preferencias["neighbourhood"].strip().lower()
-    barrios_csv_minuscula = [b.lower() for b in barrios_validos]
-    
-    if barrio_usuario not in barrios_csv_minuscula:
-        print(f"Error: El barrio '{preferencias['neighbourhood']}' no existe en el registro de CABA.")
-        return False
-
-    preferencias["precio"] = int(precio_str)
-    preferencias["minimum_nights"] = int(noches_str)
-
-    posicion = barrios_csv_minuscula.index(barrio_usuario)
-    preferencias["neighbourhood"] = barrios_validos[posicion]
-
     return True
 
+
+def validar_noches(noches_str):
+    """
+    Valida que la cantidad de noches sea un número entero positivo.
+
+    Argumentos:
+        noches_str (str): Las noches ingresadas por el usuario como texto.
+
+    Retorna:
+        bool: True si es válido, False si no lo es.
+    """
+    if not noches_str.isdigit() or int(noches_str) <= 0:
+        print(" Dato inválido: la cantidad de noches debe ser un número entero positivo.")
+        return False
+    return True
+
+
+def validar_barrio(barrio, barrios_validos):
+    """
+    Valida que el barrio ingresado exista en el CSV de Airbnb.
+
+    Argumentos:
+        barrio (str): El barrio ingresado por el usuario.
+        barrios_validos (list): Lista de barrios reales extraídos del CSV.
+
+    Retorna:
+        bool: True si es válido, False si no lo es.
+    """
+    if barrio.strip().lower() not in [b.lower() for b in barrios_validos]:
+        print(f" Dato inválido: el barrio '{barrio}' no existe en el registro de CABA.")
+        return False
+    return True
