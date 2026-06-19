@@ -68,6 +68,7 @@ if df is not None and preferencias is not None and df_barrio is not None:
               f"tus preferencias. El precio promedio por noche es de ${precio_prom}, "
               f"con un rango que va desde ${precio_min} hasta ${precio_max}. "
               f"La estadía mínima requerida en esta zona es de {noches_min} noche(s).\n")
+        print("Para ver la tabla con los datos hay que cerrar el mapa y frenar el programa.")
         try:
             mapa = crear_mapa(df_filtrado)
             mapa.save("outputs/mapa.html")
@@ -76,3 +77,4 @@ if df is not None and preferencias is not None and df_barrio is not None:
             crear_tabla_html(df_filtrado)
         except Exception as e:
             print(f"No se pudo generar el mapa o la tabla.  Detalle: {e}")
+            
